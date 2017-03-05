@@ -1,14 +1,10 @@
 ﻿<?php
-$mail_to = 'exemple@yandex.ru';//Вставить email менеджера
-$sitename = "название сайта";//Вставить название сайта
-
+$mail_to = 'maila@yandex.ru';
+$sitename = "sitename";
 
 $picture = "";
 
 if (!empty($_FILES['mail_file']['tmp_name'])) {
-
-    // Закачиваем файл 
-
     $path = $_FILES['mail_file']['name'];
     if (copy($_FILES['mail_file']['tmp_name'], $path)) $picture = $path;
 }
@@ -60,7 +56,7 @@ function send_mail($to, $thm, $html, $path)
     fclose($fp);
 
 
-    $boundary = "--" . md5(uniqid(time())); // генерируем разделитель
+    $boundary = "--" . md5(uniqid(time()));
 
     $headers = "MIME-Version: 1.0\n";
 
@@ -68,7 +64,7 @@ function send_mail($to, $thm, $html, $path)
 
     $multipart = "--$boundary\n";
 
-    $kod = 'utf-8'; // или $kod = 'windows-1251'; 
+    $kod = 'utf-8';
 
     $multipart .= "Content-Type: text/html; charset=$kod\n";
 
